@@ -1,18 +1,56 @@
-import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        boolean run = true;
-        Semaphore sem = new Semaphore(1);
+        QueueThread queueThread = new QueueThread();
+        int customersWaitingInLine = 5;
+        int customersPaying = 2;
 
-        MyThread thread1 = new MyThread(sem, run);
-        MyThread thread2 = new MyThread(sem, run);
+        Thread paying = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int customerCount = 0;
+                while (customerCount < customersPaying) {
+                    Customer customer = new Customer(queueThread);
+                    Thread thread1 = new Thread(customer);
+                    customer.setName("" + thread1.getId());
+                    thread1.start();
+                    customerCount++;
 
-        thread1.start();
-        thread2.start();
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+
+        Thread inLine = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int customerCount = 0;
+                while (customersWaitingInLine > customerCount) {
+                    Customer customer = new Customer(queueThread);
+                    Thread thread1 = new Thread(customer);
+                    customer.setName("" + thread1.getId());
+                    thread1.start();
+                    customerCount++;
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        paying.start();
+        inLine.start();
 
     }
 
