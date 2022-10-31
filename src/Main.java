@@ -6,7 +6,7 @@ public class Main {
 
         QueueThread queueThread = new QueueThread();
         int customersWaitingInLine = 5;
-        int customersPaying = 2;
+        int customersPaying = 1;
 
         Thread paying = new Thread(new Runnable() {
             @Override

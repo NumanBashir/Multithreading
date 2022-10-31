@@ -1,7 +1,7 @@
 public class Customer implements Runnable {
 
     private String name;
-    private QueueThread queueThread;
+    private final QueueThread queueThread;
 
     public Customer(QueueThread queueThread) {
         this.queueThread = queueThread;

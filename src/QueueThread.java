@@ -14,7 +14,7 @@ public class QueueThread extends Thread {
 
     public void buyGrocerciesInLine(Customer customer) {
         try {
-            System.out.println(customer.getName() + " is waiting in line");
+            System.out.println(customer.getName() + " is waiting in line and is still shopping while waiting for his turn");
             sem.acquire();
             System.out.println(customer.getName() + " has the turn in the queue, place your groceries on the belt");
             long durationOfItems = (long) (Math.random() * 1);
