@@ -6,9 +6,9 @@ public class Main {
 
         QueueThread queueThread = new QueueThread();
         int customersWaitingInLine = 5;
-        int customersPaying = 1;
+        int customersPaying = 2;
 
-        Thread paying = new Thread(new Runnable() {
+        Thread box1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 int customerCount = 0;
@@ -18,9 +18,32 @@ public class Main {
                     customer.setName("" + thread1.getId());
                     thread1.start();
                     customerCount++;
+                    System.out.println("In thread: " + Thread.currentThread().getName());
 
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep((long) (Math.random()*(10-1)+1));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+
+        Thread box2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int customerCount = 0;
+                while (customerCount < customersPaying) {
+                    Customer customer = new Customer(queueThread);
+                    Thread thread1 = new Thread(customer);
+                    customer.setName("" + thread1.getId());
+                    thread1.start();
+                    customerCount++;
+                    System.out.println("In thread: " + Thread.currentThread().getName());
+
+                    try {
+                        Thread.sleep((long) (Math.random()*(10-1)+1));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -41,7 +64,7 @@ public class Main {
                     customerCount++;
 
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep((long) (Math.random()*(10-1)+1));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -49,7 +72,8 @@ public class Main {
             }
         });
 
-        paying.start();
+        box1.start();
+        box2.start();
         inLine.start();
 
     }
