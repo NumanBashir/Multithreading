@@ -22,6 +22,7 @@ public class Main {
 
                     try {
                         Thread.sleep((long) (Math.random()*(10-1)+1));
+                        //Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -44,6 +45,7 @@ public class Main {
 
                     try {
                         Thread.sleep((long) (Math.random()*(10-1)+1));
+                        //Thread.sleep(10000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -59,7 +61,7 @@ public class Main {
                 while (customersWaitingInLine > customerCount) {
                     Customer customer = new Customer(queueThread);
                     Thread thread1 = new Thread(customer);
-                    customer.setName("" + thread1.getId());
+                    customer.setName("Customer " + thread1.getId());
                     thread1.start();
                     customerCount++;
 
@@ -74,7 +76,7 @@ public class Main {
 
         box1.start();
         box2.start();
-        inLine.start();
+        //inLine.start();
 
     }
 
