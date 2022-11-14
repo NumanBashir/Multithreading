@@ -76,7 +76,7 @@ public class Main {
 
         box1.start();
         box2.start();
-        //inLine.start();
+        inLine.start();
 
     }
 
