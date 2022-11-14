@@ -13,8 +13,10 @@ public class QueueThread extends Thread {
 
 
     public void buyGrocerciesInLine(Customer customer) {
+        long durationOfItems = (long) (Math.random()*(10-1)+5);
+
         try {
-            System.out.println(customer.getName() + " is waiting in line and is still shopping while waiting for his turn");
+            System.out.println(customer.getName() + ": Is waiting in line and is still shopping while waiting for his turn");
             sem.acquire();
             System.out.println(customer.getName() + ": Has the turn in the queue, place your groceries on the belt");
             //long durationOfItems = (long) (Math.random() * 1);
@@ -23,7 +25,7 @@ public class QueueThread extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            System.out.println(customer.getName() + " has paid and now leaving the store");
+            System.out.println(customer.getName() + ": Has paid and now leaving the store | Seconds left: " + durationOfItems + "\n");
             sem.release();
         }
     }

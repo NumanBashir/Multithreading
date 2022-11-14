@@ -15,7 +15,7 @@ public class Main {
                 while (customerCount < customersPaying) {
                     Customer customer = new Customer(queueThread);
                     Thread thread1 = new Thread(customer);
-                    customer.setName("" + thread1.getId());
+                    customer.setName("Customer " + thread1.getId());
                     thread1.start();
                     customerCount++;
                     System.out.println("In thread: " + Thread.currentThread().getName());
@@ -38,7 +38,7 @@ public class Main {
                 while (customerCount < customersPaying) {
                     Customer customer = new Customer(queueThread);
                     Thread thread1 = new Thread(customer);
-                    customer.setName("" + thread1.getId());
+                    customer.setName("Customer " + thread1.getId());
                     thread1.start();
                     customerCount++;
                     System.out.println("In thread: " + Thread.currentThread().getName());
