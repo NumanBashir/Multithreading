@@ -18,11 +18,11 @@ public class Main {
                     customer.setName("Customer " + thread1.getId());
                     thread1.start();
                     customerCount++;
-                    System.out.println("In thread: " + Thread.currentThread().getName());
+                    System.out.println("In box: " + Thread.currentThread().getName());
 
                     try {
                         Thread.sleep((long) (Math.random()*(10-1)+1));
-                        //Thread.sleep(1000);
+                        //Thread.sleep(0);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -41,7 +41,7 @@ public class Main {
                     customer.setName("Customer " + thread1.getId());
                     thread1.start();
                     customerCount++;
-                    System.out.println("In thread: " + Thread.currentThread().getName());
+                    System.out.println("In box: " + Thread.currentThread().getName());
 
                     try {
                         Thread.sleep((long) (Math.random()*(10-1)+1));

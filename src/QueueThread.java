@@ -8,7 +8,7 @@ public class QueueThread extends Thread {
     Semaphore sem;
 
     public QueueThread() {
-        sem = new Semaphore(1);
+        sem = new Semaphore(2); // Only allow to acquire one thread
     }
 
 
@@ -17,7 +17,7 @@ public class QueueThread extends Thread {
 
         try {
             System.out.println(customer.getName() + ": Is waiting in line and is still shopping while waiting for his turn");
-            sem.acquire();
+            sem.acquire(); // Enter crictical section
             System.out.println(customer.getName() + ": Has the turn in the queue, place your groceries on the belt");
             //long durationOfItems = (long) (Math.random() * 1);
             TimeUnit.SECONDS.sleep(durationOfItems);
@@ -28,5 +28,6 @@ public class QueueThread extends Thread {
             System.out.println(customer.getName() + ": Has paid and now leaving the store | Left in: " + durationOfItems + " seconds" + "\n");
             sem.release();
         }
+
     }
 }
